@@ -1,0 +1,66 @@
+<%- include('parts/header.ejs')%>
+    <%- include('parts/nav.ejs')%>
+        <style>
+            a.col-4 {
+                max-width: 235px;
+
+            }
+
+            .card-img-top {
+                transition: all ease-in-out .5s;
+            }
+
+            .card:hover .card-img-top {
+                height: 11rem;
+                box-shadow: -4px 7px 20px;
+                width: 92%;
+                margin-right: 4%;
+                margin-bottom: 1px;
+            }
+        </style>
+        <div class=" row my-0 mt-2" style="
+        margin: 0;
+    ">
+
+            <div class="col-9 row" style="
+            margin: 0;
+            direction: rtl;
+        ">
+                <iframe
+                    src="https://timesprayer.com/widgets.php?frame=1&amp;lang=ar&amp;name=ismailia&amp;sound=true&amp;avachang=true&amp;fcolor=000000&amp;tcolor=2D959C&amp;frcolor=2D959C&"
+                    style="border: none;overflow: hidden;width: 100%;height: 188px;">
+                </iframe>
+                <h2 style="
+                text-align: center;
+            ">العلماء والدعاة</h2>
+                <% for(let scholar of data){ %>
+
+                    <a class="col-lg-4 col-sm-6 my-2  mt-2 btn " href="scholar/<%=scholar._id%>" style="    border: 0;">
+
+                        <div class="card" style="
+                        max-height: 358px;
+                        overflow: hidden;
+                        min-height: 358px;
+                    ">
+                            <img src="<%=scholar.image%>" style="height: 11rem;" class="card-img-top " alt="..."
+                                title="<%=scholar.name%>">
+                            <div class="card-body" style="
+overflow: auto;
+height: 100%;
+">
+                                <h2>
+                                    <%=scholar.name%>
+                                </h2>
+                                <p class="card-text">
+                                    <%=scholar.discr%>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <%}%>
+            </div>
+            <div class="col-3">
+                <%- include('parts/list.ejs')%>
+            </div>
+        </div>
+        <%- include('parts/footer.ejs')%>

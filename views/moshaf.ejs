@@ -1,0 +1,686 @@
+<%- include('parts/header.ejs')%>
+    <%- include('parts/nav.ejs')%>
+        <style>
+            .carousel-item {
+
+                border: 20px solid;
+                border-radius: 20px;
+
+            }
+
+            .carousel-item.active {
+
+                border: 20px solid #00d3ff;
+                border-radius: 23px;
+
+            }
+
+            .play.plaing {
+                background-color: black;
+                color: white;
+                box-shadow: -4px 5px 20px black;
+                border-color: black;
+                cursor: not-allowed !important;
+                pointer-events: auto;
+            }
+
+            .play.plaing {
+                background-color: black;
+                color: white;
+                box-shadow: -4px 5px 20px black;
+                border-color: black;
+                cursor: not-allowed !important;
+                pointer-events: auto;
+            }
+
+            .prev,
+            .next {
+                cursor: pointer;
+            }
+
+            .prev:hover,
+            .next:hover {
+                transition: all 1s ease-in-out;
+                background-color: #e0f9ff;
+            }
+        </style>
+        <div style="margin: 0;" class=" row my-0 mt-2">
+            <div class="col-lg-3 col-md-3"></div>
+            <div class="col-lg-6 col-md-6">
+                <div style="width: 100%;
+            height: 544px;">
+
+                    <div class="next" onclick="next()" style="
+                    position: absolute;
+                    left: 0%;    top: 50%;
+                "><img src="https://img.icons8.com/cute-clipart/2x/left-squared.png" style="width: 43px;"></div>
+                    <div class="prev" onclick="prev()" style="
+                    position: absolute;
+                    right: 0%;    top: 50%;
+                "><img src="https://img.icons8.com/cute-clipart/2x/right-squared.png" style="width: 43px;"></div>
+                    <img src="https://quran.ksu.edu.sa/tajweed_png/1.png" style="width: 100%;
+                height: 100%;" class="d-block image" alt="...">
+
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-md-3"></div>
+        </div>
+        <button class="btn btn-primary hvr-wobble-bottom" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="
+                position: fixed;
+                left: 69px;
+    top: 0px;
+    width: 74px;
+        ">
+            <img style="width: 100%" src="https://img.icons8.com/fluency/512/menu-rounded.png" alt="" srcset="">
+        </button>
+
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+                </h5>
+                <button type="button" class="btn-close" onclick="document.querySelector('.offcanvas-backdrop ').click()"
+                    data-bs-displaymiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <%- include('parts/list.ejs')%>
+
+
+
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-heading-1">
+                                <button class="accordion-button bg-info mt-3 collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapse-1" aria-expanded="false"
+                                    aria-controls="flush-collapse-1">
+                                    الفهرس
+                                </button>
+                            </h2>
+                            <div id="flush-collapse-1" class="accordion-collapse collapse"
+                                aria-labelledby="flush-heading-1" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body row">
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="1">
+                                        الفاتحه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="2">
+                                        البقره
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="50">
+                                        آل
+                                        عمران
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="76">
+                                        النساء
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="106">
+                                        المائده
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="128">
+                                        الانعام
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="151">
+                                        الاعراف
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="177">
+                                        الانفال
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="187">
+                                        التوبه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="207">
+                                        يونس
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="221">
+                                        هود
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="235">
+                                        يوسف
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="249">
+                                        الرعد
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="255">
+                                        إبراهيم
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="262">
+                                        الحجر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="267">
+                                        النحل
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="282">
+                                        الإسراء
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="293">
+                                        الكهف
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="305">
+                                        مريم
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="312">
+                                        طه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="322">
+                                        الانبياء
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="332">
+                                        الحج
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="341">
+                                        المؤمنون
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="350">
+                                        النور
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="359">
+                                        الفرقان
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="366">
+                                        الشعراء
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="376">
+                                        النمل
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="385">
+                                        القصص
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="396">
+                                        العنكبوت
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="404">
+                                        الروم
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="411">
+                                        لقمان
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="414">
+                                        السجده
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="417">
+                                        الاحزاب
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="428">
+                                        سبأ
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="434">
+                                        فاطر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="440">
+                                        يس
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="445">
+                                        الصافات
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="452">
+                                        ص
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="458">
+                                        الزمر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="467">
+                                        غافر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="477">
+                                        فصلت
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="483">
+                                        الشورى
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="489">
+                                        الزخرف
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="496">
+                                        الدخان
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="498">
+                                        الجاثيه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="502">
+                                        الاحقاف
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="506">
+                                        محمد
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="511">
+                                        الفتح
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="515">
+                                        الحجرات
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="518">
+                                        ق
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="520">
+                                        الذاريات
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="523">
+                                        الطور
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="525">
+                                        النجم
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="528">
+                                        القمر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="531">
+                                        الرحمن
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="534">
+                                        الواقعه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="537">
+                                        الحديد
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="542">
+                                        المجادله
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="545">
+                                        الحشر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="548">
+                                        الممتحنه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="551">
+                                        الصف
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="553">
+                                        الجمعه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="554">
+                                        المنافقون
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="555">
+                                        التغابن
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="557">
+                                        الطلاق
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="560">
+                                        التحريم
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="562">
+                                        الملك
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="564">
+                                        القلم
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="566">
+                                        الحاقه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="568">
+                                        المعارج
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="570">
+                                        نوح
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="572">
+                                        الجن
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="574">
+                                        المزمل
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="575">
+                                        المدثر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="577">
+                                        القيامه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="578">
+                                        الانسان
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="580">
+                                        المرسلات
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="582">
+                                        النبإ
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="583">
+                                        النازعات
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="584">
+                                        عبس
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="586">
+                                        التكوير
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="587">
+                                        الانفطار
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="587">
+                                        المطففين
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="589">
+                                        الانشقاق
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="590">
+                                        البروج
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="591">
+                                        الطارق
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="591">
+                                        الاعلى
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="592">
+                                        الغاشيه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="593">
+                                        الفجر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="594">
+                                        البلد
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="595">
+                                        الشمس
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="595">
+                                        الليل
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="596">
+                                        الضحى
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="596">
+                                        الشرح
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="597">
+                                        التين
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="597">
+                                        العلق
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="598">
+                                        القدر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="598">
+                                        البينه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="599">
+                                        الزلزله
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="599">
+                                        العاديات
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="600">
+                                        القارعه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="600">
+                                        التكاثر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="601">
+                                        العصر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="601">
+                                        الهمزه
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="601">
+                                        الفيل
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="602">
+                                        قريش
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="602">
+                                        الماعون
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="602">
+                                        الكوثر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="603">
+                                        الكافرون
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="603">
+                                        النصر
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="603">
+                                        المسد
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="604">
+                                        الإخلاص
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="604">
+                                        الفلق
+                                    </button>
+                                    <button class="btn col-12 btn-info  hvr-grow-shadow hvr-buzz gopage my-3"
+                                        style="width: 100%;" data-safha="604">
+                                        الناس
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="audioD mt-4 w-100" style="
+                    direction: rtl;
+                ">
+                        <div style="
+                        margin-right: 9rem!important
+                    ">محمد صديق المنشاوي</div>
+                        <audio src="https://download.quran.islamway.net/quran3/133/128/001.mp3 " controls="" style="
+    width: 100%;
+    ">
+
+                        </audio>
+                        <div style="
+                        margin-right: 7rem!important;
+                    ">الفاتحه</div>
+                    </div>
+                    <%for(moshaf of data){%>
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-heading-<%=moshaf._id%>">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapse-<%=moshaf._id%>" aria-expanded="false"
+                                        aria-controls="flush-collapse-<%=moshaf._id%>">
+                                        <%=moshaf.discr%>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapse-<%=moshaf._id%>" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-heading-<%=moshaf._id%>"
+                                    data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body row">
+                                        <%for(audio of moshaf.audios){%>
+                                            <div class="col-12 mb-2 mt-2">
+
+                                                <button class="btn btn-info play  hvr-float-shadow hvr-pulse-grow"
+                                                    style="width: 100%;" data-url="<%=audio.url%>"
+                                                    data-aname="<%=audio.name%>" data-name="<%=moshaf.name%>">
+                                                    <%=audio.name%>
+                                                </button>
+
+                                            </div>
+
+
+
+                                            <%}%>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <%}%>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+
+            function next() {
+                if (parseInt($(".image").attr("src").slice(37)) != 604) {
+
+                    $(".image").attr("src", `https://quran.ksu.edu.sa/tajweed_png/${parseInt($(".image").attr("src").slice(37)) + 1}.png`)
+                } else {
+                    $(".image").attr("src", `https://quran.ksu.edu.sa/tajweed_png/1.png`)
+
+                }
+            }
+            function prev() {
+                if (parseInt($(".image").attr("src").slice(37)) != 1) {
+                    $(".image").attr("src", `https://quran.ksu.edu.sa/tajweed_png/${parseInt($(".image").attr("src").slice(37)) - 1}.png`)
+                } else {
+                    $(".image").attr("src", `https://quran.ksu.edu.sa/tajweed_png/604.png`)
+
+                }
+            }
+            let all = [{ name: "الفاتحه", page: 1 }, { name: "البقره", page: 2 }, { name: "آل عمران", page: 50 }, { name: "النساء", page: 76 }, { name: "المائده", page: 106 }, { name: "الانعام", page: 128 }, { name: "الاعراف", page: 151 }, { name: "الانفال", page: 177 }, { name: "التوبه", page: 187 }, { name: "يونس", page: 207 }, { name: "هود", page: 221 }, { name: "يوسف", page: 235 }, { name: "الرعد", page: 249 }, { name: "إبراهيم", page: 255 }, { name: "الحجر", page: 262 }, { name: "النحل", page: 267 }, { name: "الإسراء", page: 282 }, { name: "الكهف", page: 293 }, { name: "مريم", page: 305 }, { name: "طه", page: 312 }, { name: "الانبياء", page: 322 }, { name: "الحج", page: 332 }, { name: "المؤمنون", page: 341 }, { name: "النور", page: 350 }, { name: "الفرقان", page: 359 }, { name: "الشعراء", page: 366 }, { name: "النمل", page: 376 }, { name: "القصص", page: 385 }, { name: "العنكبوت", page: 396 }, { name: "الروم", page: 404 }, { name: "لقمان", page: 411 }, { name: "السجده", page: 414 }, { name: "الاحزاب", page: 417 }, { name: "سبأ", page: 428 }, { name: "فاطر", page: 434 }, { name: "يس", page: 440 }, { name: "الصافات", page: 445 }, { name: "ص", page: 452 }, { name: "الزمر", page: 458 }, { name: "غافر", page: 467 }, { name: "فصلت", page: 477 }, { name: "الشورى", page: 483 }, { name: "الزخرف", page: 489 }, { name: "الدخان", page: 496 }, { name: "الجاثيه", page: 498 }, { name: "الاحقاف", page: 502 }, { name: "محمد", page: 506 }, { name: "الفتح", page: 511 }, { name: "الحجرات", page: 515 }, { name: "ق", page: 518 }, { name: "الذاريات", page: 520 }, { name: "الطور", page: 523 }, { name: "النجم", page: 525 }, { name: "القمر", page: 528 }, { name: "الرحمن", page: 531 }, { name: "الواقعه", page: 534 }, { name: "الحديد", page: 537 }, { name: "المجادله", page: 542 }, { name: "الحشر", page: 545 }, { name: "الممتحنه", page: 548 }, { name: "الصف", page: 551 }, { name: "الجمعه", page: 553 }, { name: "المنافقون", page: 554 }, { name: "التغابن", page: 555 }, { name: "الطلاق", page: 557 }, { name: "التحريم", page: 560 }, { name: "الملك", page: 562 }, { name: "القلم", page: 564 }, { name: "الحاقه", page: 566 }, { name: "المعارج", page: 568 }, { name: "نوح", page: 570 }, { name: "الجن", page: 572 }, { name: "المزمل", page: 574 }, { name: "المدثر", page: 575 }, { name: "القيامه", page: 577 }, { name: "الانسان", page: 578 }, { name: "المرسلات", page: 580 }, { name: "النبإ", page: 582 }, { name: "النازعات", page: 583 }, { name: "عبس", page: 584 }, { name: "التكوير", page: 586 }, { name: "الانفطار", page: 587 }, { name: "المطففين", page: 587 }, { name: "الانشقاق", page: 589 }, { name: "البروج", page: 590 }, { name: "الطارق", page: 591 }, { name: "الاعلى", page: 591 }, { name: "الغاشيه", page: 592 }, { name: "الفجر", page: 593 }, { name: "البلد", page: 594 }, { name: "الشمس", page: 595 }, { name: "الليل", page: 595 }, { name: "الضحى", page: 596 }, { name: "الشرح", page: 596 }, { name: "التين", page: 597 }, { name: "العلق", page: 597 }, { name: "القدر", page: 598 }, { name: "البينه", page: 598 }, { name: "الزلزله", page: 599 }, { name: "العاديات", page: 599 }, { name: "القارعه", page: 600 }, { name: "التكاثر", page: 600 }, { name: "العصر", page: 601 }, { name: "الهمزه", page: 601 }, { name: "الفيل", page: 601 }, { name: "قريش", page: 602 }, { name: "الماعون", page: 602 }, { name: "الكوثر", page: 602 }, { name: "الكافرون", page: 603 }, { name: "النصر", page: 603 }, { name: "المسد", page: 603 }, { name: "الإخلاص", page: 604 }, { name: "الفلق", page: 604 }, { name: "الناس", page: 604 }]
+            $(".gopage").on("click", function () {
+                $(this).attr("data-safha")
+                $(".image").attr("src", `https://quran.ksu.edu.sa/tajweed_png/${$(this).attr("data-safha")}.png`)
+
+            })
+            function goToPage(n) {
+                $(".image").attr("src", `https://quran.ksu.edu.sa/tajweed_png/${n}.png`)
+            }
+            function find(type, text) {
+                return all.find(e => e[type] == text)
+            }
+
+            $(".play").on("click", function () {
+                let e = find("name", $(this).attr("data-aname"))
+                Audio($(this).attr("data-name"), $(this).attr("data-aname"), $(this).attr("data-url"))
+                goToPage(e.page)
+                $(".play").removeClass("plaing")
+                for (let i = 0; i < $(".accordion-button").length; i++) {
+
+                    if (!$($(".accordion-button")[i]).hasClass("collapsed")) { document.getElementsByClassName("accordion-button")[i].click() }
+                }
+                $(".play").removeAttr("disabled")
+                $(this).addClass("plaing")
+                $(this).attr("disabled", "")
+
+                const element = document.getElementsByTagName("audio")[0];
+                element.scrollIntoView(true);
+            })
+            function Audio(name, aname, url) {
+                $(".audioD").html(`
+                    <div style="
+                        margin-right: 7rem!important;
+                    ">${name}</div>
+                        <audio autoplay src="${url}" controls="" style="
+    width: 100%;
+    ">
+
+                        </audio>
+                        <div style="
+                        margin-right: 9rem!important;
+                    ">${aname}  </div>
+`)
+            }
+        </script>
+        <%- include('parts/footer.ejs')%>

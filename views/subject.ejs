@@ -1,0 +1,205 @@
+<%- include('parts/header.ejs')%>
+    <%- include('parts/nav.ejs')%>
+        <style>
+            * {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-size: 23px;
+            }
+        </style>
+        <iframe
+            src="https://timesprayer.com/widgets.php?frame=1&amp;lang=ar&amp;name=ismailia&amp;sound=true&amp;avachang=true&amp;fcolor=000000&amp;tcolor=2D959C&amp;frcolor=2D959C&"
+            style="border: none;overflow: hidden;width: 100%;height: 188px;">
+        </iframe>
+        <%if(type!=="articles"&&type!=="books"){%>
+
+            <div class="card mb-3 text-center bg-info mt-5" style="direction: rtl;">
+                <h5 class="card-title">
+                    <a href="/scholar/<%=man._id%>"> <img src="<%=man.image%>" class="rounded-circle" style="
+                        width: 100px;
+                    ">
+                        <%=man.name%>
+                    </a>
+                </h5>
+                <%=subject.name%>
+                    <div class="btn btn-info">المشاهدات<%=vesits%>
+                    </div>
+
+                    <video autoplay src="<%=subject.url%>" id="vid" controls class="card-img-top">
+
+                    </video>
+                    <div class="in" style="    width: 100%;
+                    position: absolute;"></div>
+                    <div class="card-body">
+
+
+
+                        <p class="card-text">
+                            <%=subject.name%>
+                        </p>
+                        <p class="card-text"><small class="text-muted">
+                                <%=subject.date%>
+                            </small></p>
+                    </div>
+            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+
+                let vid = document.getElementById("vid")
+                vid.onended = () => {
+                    $(".in").html(`
+                        <div class="bg-black" style="
+        width: 100%;
+        height: 40%;
+        z-index: 11111111;
+        display: block;
+        position: absolute;
+        left: 0px;
+        top: 112px;
+        opacity: 0.7;
+        text-align: center;
+        color: white;
+    "> <a href="/scholar/<%=man._id%>"> <img src="<%=man.image%>" class="rounded-circle" style="
+                        width: 100px;
+                    ">
+                            <%=man.name%>
+                        </a> 
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <a href="/" class="btn btn-success ">عد إلى الصفحه الرئيسيه</a>
+                        </div>
+                        `)
+                }
+                vid.onplay = () => {
+                    $(".in").html("")
+                }
+            </script>
+
+            <%}else if(type=="articles" ){%>
+                <div class="card mb-3 text-center bg-info mt-5" style="direction: rtl;">
+                    <h5 class="card-title">
+                        <a href="/scholar/<%=man._id%>">
+                            <img src="<%=man.image%>" class="rounded-circle" style="    width: 100px;">
+                            <%=man.name%>
+                        </a>
+                    </h5>
+
+                    <div class="card-body">
+                        <p class="card-text">
+                            <%=subject.name%>
+                                <div class="btn btn-info">المشاهدات<%=vesits%>
+                                </div>
+                        </p>
+                        <% if(subject.image){%>
+                            <img src="<%=subject.image%>" class="card-img-top" alt="...">
+                            <%}%>
+
+                                <p class="card-text alltext">
+                                    <%=subject.text%>
+                                </p>
+                                <p class="card-text"><small class="text-muted">
+                                        <%=subject.date%>
+                                    </small></p>
+                    </div>
+                </div>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script>
+
+                    let all = $(".alltext").text()
+                    let text = all
+                    let texts = text.split("")
+                    let myPromise = new Promise(function (resolve, reject) {
+
+                        for (let i = 0; i < texts.length; i++) {
+                            if (texts[i] == "..") {
+                                texts[i] = ".."
+
+                            } else
+                                if (texts[i] == ".") {
+                                    texts[i] = ".<br>"
+
+                                }
+                            if (texts[i] == `
+    `) {
+                                texts[i] = "<br>"
+
+                            } else
+                                if (texts[i] == "(" || texts[i] == "«") {
+                                    texts[i] = "<div class='hadith'>("
+                                } else
+                                    if (texts[i] == ")" || texts[i] == "»") {
+                                        texts[i] = ")</div>"
+                                    } else
+                                        if (texts[i] == "{") {
+                                            texts[i] = "<div class='quran'>{"
+                                        } else
+                                            if (texts[i] == "}") {
+                                                texts[i] = "}</div>"
+                                            } else
+                                                if (texts[i] == "ا" && texts[i + 1] == "ل" && texts[i + 2] == "ل" && texts[i + 3] == "ه" && texts[i + 4] == "م") {
+                                                    texts[i] = "<div class='allh'>اللهم</div>"
+                                                    texts[i + 1] = ""
+                                                    texts[i + 2] = ""
+                                                    texts[i + 3] = ""
+                                                    texts[i + 4] = ""
+                                                } else
+                                                    if (texts[i] == "ا" && texts[i + 1] == "ل" && texts[i + 2] == "ل" && texts[i + 3] == "ه") {
+                                                        texts[i] = "<div class='allh'>الله</div>"
+                                                        texts[i + 1] = ""
+                                                        texts[i + 2] = ""
+                                                        texts[i + 3] = ""
+                                                    }
+                        }
+                        resolve("ok");
+                        reject("error");
+                    });
+
+                    myPromise.then(
+                        function (value) {
+                            let texts2 = texts.join("")
+                            $(".alltext").html(texts2)
+                        },
+                        function (err) { console.log(err) }
+                    );
+
+
+
+                </script>
+                <%}else{%>
+                    <style>
+
+                    </style>
+
+                    <div class="card mb-3 text-center bg-info mt-5" style="direction: rtl;">
+                        <h5 class="card-title">
+                            <a href="/scholar/<%=man._id%>"> <img src="<%=man.image%>" class="rounded-circle" style="
+                                width: 100px;
+                            ">
+                                <%=man.name%>
+                            </a>
+                        </h5>
+                        <%=subject.name%>
+                            <div class="btn btn-info">المشاهدات: <%=vesits%>
+                            </div>
+                            <iframe
+                                src="https://ar.islamway.net/bundles/viewers/pdfjs-1.9.426/web/viewer.php?file=<%=subject.url%>"
+                                style="height:588px ;    border: 8px solid black;" frameborder=" 0"></iframe>
+
+                            <div class="in" style="    width: 100%;
+                            position: absolute;"></div>
+                            <div class="card-body">
+
+
+
+                                <p class="card-text">
+                                    <%=subject.name%>
+                                </p>
+                                <p class="card-text"><small class="text-muted">
+                                        <%=subject.date%>
+                                    </small></p>
+                            </div>
+                    </div>
+                    <%}%>
+
+                        <%- include('parts/footer.ejs')%>

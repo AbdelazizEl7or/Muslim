@@ -1,0 +1,49 @@
+<%- include('parts/header.ejs')%>
+    <%- include('parts/nav.ejs')%>
+        <style>
+            .card.text-center.text-bg-dark.mb-3 {
+                max-width: 18rem;
+                min-height: 385px;
+                max-height: 385px;
+            }
+
+            .a {
+                text-decoration: auto;
+            }
+        </style>
+
+
+        <div class="row mt-4">
+            <div class="col row">
+                <h2 style="
+                text-align: center;
+            ">التصميمات</h2>
+                <%for(sub of data){%>
+                    <a class="a col-6" href="/photos/<%= sub._id%>">
+                        <div class="card text-center text-bg-dark mb-3" style="max-width: 18rem;overflow: hidden;">
+                            <div class="card-header">
+                                <%= sub.name%>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <img src=" <%= sub.image%>" alt="" style="
+    width: 100%;
+    max-height: 289px;
+">
+                                </h5>
+                                <p class="card-text"><small class="text-muted">
+                                        <img src="https://img.icons8.com/color/512/calendar--v1.png"
+                                            style="width: 20px;">
+                                        <%= sub.date%>
+                                    </small></p>
+                            </div>
+                        </div>
+                    </a>
+                    <%}%>
+            </div>
+            <div class="col-3">
+                <%- include('parts/list.ejs')%>
+            </div>
+        </div>
+
+        <%- include('parts/footer.ejs')%>
