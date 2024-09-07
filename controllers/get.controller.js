@@ -22,13 +22,27 @@ exports.getAll = (req, res, next) => {
                     Article.find({}, (err, articles) => {
 
                         Books.find({}, (err, books) => {
-
+                            lessons.forEach(element => {
+                                element.type="lessons"
+                            });
+                            anashid.forEach(element => {
+                                element.type="anashid"
+                            });
+                            articles.forEach(element => {
+                                element.type="articles"
+                            });
+                           let news = [...lessons,...articles,...anashid];
+                           news.sort(function(a,b){
+                            return new Date(b.date) - new Date(a.date);
+                          })
+                          news = news.slice(0, 30);
                             res.render("index", {
                                 scholars: scholar,
                                 lessons: lessons,
                                 articles: articles,
                                 anashid: anashid,
                                 books: books,
+                                news:news,
                                 path: "/"
                             })
 
