@@ -1,4 +1,4 @@
-# Islamic site  [DEMO](https://tulip-fuschia-scooter.glitch.me/)
+#  Muslim Islamic site  [DEMO](https://tulip-fuschia-scooter.glitch.me/)
 
 ## Its a website that displays Islamic preaching clips, Islamic songs, and preaching articles, in addition to many other features.
 
