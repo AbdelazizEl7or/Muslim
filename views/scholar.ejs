@@ -1,6 +1,324 @@
 <%- include('parts/header.ejs')%>
     <%- include('parts/nav.ejs')%>
-        <style>
+    <style>
+        .btn.btn-primary.active {
+    color: var(--bs-primary) !important;
+    background: var(--bs-dark) !important;
+    border-color: var(--bs-dark) !important;
+}
+    </style>
+    
+    <div class="container-fluid team py-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-4 col-xl-5">
+                    <div class="team-img wow zoomIn" style="    max-height: 500px;" data-wow-delay="20s">
+                        <img src="<%=scholar.image %>" class="img-fluid" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-8 col-xl-7">
+                    <div class="team-item wow fadeIn" data-wow-delay="0.1s">
+                        <h1><%=scholar.name %></h1>
+                        <h5 class="fw-normal fst-italic text-primary mb-4">المشاهدات:<%=vesits%></h5>
+                        <p class="mb-4"><%=scholar.discr %></p>
+                         <div class="team-icon d-flex pb-4 mb-4 border-bottom border-primary">   
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                  <button class="btn btn-primary btn-lg-square me-2 active" id="nav-less-tab" data-bs-toggle="tab" data-bs-target="#nav-less" type="button" role="tab" aria-controls="nav-less" aria-selected="true"><i class="fas fa-video"></i></button>
+                                  <button class="btn btn-primary btn-lg-square me-2" id="nav-articles-tab" data-bs-toggle="tab" data-bs-target="#nav-articles" type="button" role="tab" aria-controls="nav-articles" aria-selected="false"><i class="fas fa-file-alt"></i></button>
+                                  <button class="btn btn-primary btn-lg-square me-2" id="nav-anashid-tab" data-bs-toggle="tab" data-bs-target="#nav-anashid" type="button" role="tab" aria-controls="nav-anashid" aria-selected="false"><i class="fas fa-headphones"></i></button>
+                                  <button class="btn btn-primary btn-lg-square me-2" id="nav-books-tab" data-bs-toggle="tab" data-bs-target="#nav-books" type="button" role="tab" aria-controls="nav-books" aria-selected="false" ><i class="fas fa-book"></i></button>
+                                </div>
+                              </nav>                         
+                           <!--  <button class="btn btn-primary btn-lg-square me-2 active"  id="pills-less-tab"
+                            data-bs-toggle="pill" data-bs-target="#pills-less" type="button" role="tab"
+                            aria-controls="pills-less" aria-selected="true"><i class="fas fa-video"></i></button>
+                            <button class="btn btn-primary btn-lg-square me-2"  id="pills-articles-tab"
+                            data-bs-toggle="pill" data-bs-target="#pills-articles" type="button" role="tab"
+                            aria-controls="pills-articles" aria-selected="true"><i class="fas fa-file-alt"></i></button>
+                            <button class="btn btn-primary btn-lg-square me-2" id="pills-anashid-tab"
+                            data-bs-toggle="pill" data-bs-target="#pills-anashid" type="button" role="tab"
+                            aria-controls="pills-anashid" aria-selected="true"><i class="fas fa-headphones"></i></button>
+                            <button class="btn btn-primary btn-lg-square me-2" id="pills-books-tab"
+                            data-bs-toggle="pill" data-bs-target="#pills-books" type="button" role="tab"
+                            aria-controls="pills-books" aria-selected="true"><i class="fas fa-book"></i></button> -->
+                        </div> 
+                        
+                    </div>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-less" role="tabpanel" aria-labelledby="nav-less-tab" tabindex="0">
+                            <%if(lessons.length!=0){%>
+                                    <div class="container-fluid activities py-5">
+                                        <div class="container py-5">
+                                            <div class="row g-4">                                
+                                    <%for(nashid of lessons){%>
+                                        <div class="col-lg-12">
+                                            <div class="activities-item p-4" data-wow-delay="0.1s">                                        
+                                                <div class="ms-4">
+                                                    <div class="d-flex" style="
+                                                    
+                                                    align-items: center;
+                                                ">                                        
+                                                    <h4><%=scholar.name%></h4>
+                                                </div>
+                                                    <p class="mb-4"><%=nashid.name%></p>
+                                                    <p class="card-text"><small class="text-muted">
+                                                        <img src="https://img.icons8.com/color/512/calendar--v1.png"
+                                                            style="width: 20px;">
+                                                        <%=nashid.date%>
+                                                    </small>
+                                                </p>
+                                                    <a href="/subject/<%=scholar._id%>/lessons/<%=nashid._id%>" class="btn btn-primary px-3">
+                                                        مشاهدة                               
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>                                
+                                        <%}%>
+                                    </div>
+                                </div>
+                            </div>
+                                    <%}else{%>
+                                        <div class="alert alert-info" role="alert">
+                                            لا يوجد دروس
+                                        </div>
+                                        <%}%>
+                                    </div>
+                        <div class="tab-pane fade" id="nav-articles" role="tabpanel" aria-labelledby="nav-articles-tab" tabindex="0">
+                            <%if(articles.length!=0){%>
+                                <div class="container-fluid activities py-5">
+                                    <div class="container py-5">
+                                        <div class="row g-4">                                
+                                <%for(nashid of articles){%>
+                                    <div class="col-lg-12">
+                                        <div class="activities-item p-4" data-wow-delay="0.1s">                                        
+                                            <div class="ms-4">
+                                                <div class="d-flex" style="
+                                                
+                                                align-items: center;
+                                            ">                                        
+                                                <h4><%=scholar.name%></h4>
+                                            </div>
+                                                <p class="mb-4"><%=nashid.name%></p>
+                                                <p class="card-text"><small class="text-muted">
+                                                    <img src="https://img.icons8.com/color/512/calendar--v1.png"
+                                                        style="width: 20px;">
+                                                    <%=nashid.date%>
+                                                </small>
+                                            </p>
+                                                <a href="/subject/<%=scholar._id%>/articles/<%=nashid._id%>" class="btn btn-primary px-3">
+                                                    قراءة                               
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>                                
+                                    <%}%>
+                                </div>
+                            </div>
+                        </div>
+                                    <%}else{%>
+                                        <div class="alert alert-info" role="alert">
+                                             لا يوجد مقالات
+                                        </div>
+                                        <%}%>
+                                    </div>
+                        <div class="tab-pane fade" id="nav-anashid" role="tabpanel" aria-labelledby="nav-anashid-tab" tabindex="0">
+                            <%if(anashid.length!=0){%>
+                            <div class="container-fluid activities py-5">
+                                <div class="container py-5">
+                                    <div class="row g-4">
+                            <%for(nashid of anashid){%>
+                                <div class="col-lg-12">
+                                    <div class="activities-item p-4" data-wow-delay="0.1s">                                        
+                                        <div class="ms-4">
+                                            <div class="d-flex" style="
+                                            
+                                            align-items: center;
+                                        ">                                        
+                                            <h4><%=scholar.name%></h4>
+                                        </div>
+                                            <p class="mb-4"><%=nashid.name%></p>
+                                            <p class="card-text"><small class="text-muted">
+                                                <img src="https://img.icons8.com/color/512/calendar--v1.png"
+                                                    style="width: 20px;">
+                                                <%=nashid.date%>
+                                            </small>
+                                        </p>
+                                            <a href="/subject/<%=scholar._id%>/anashid/<%=nashid._id%>" class="btn btn-primary px-3">
+                                                استماع                               
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <%}%>
+                            </div>
+                        </div>
+                    </div>
+                                    <%}else{%>
+                                        <div class="alert alert-info" role="alert">
+                                            لا يوجد اناشيد
+                                        </div>
+                                        <%}%>
+                                    </div>
+                        <div class="tab-pane fade" id="nav-books" role="tabpanel" aria-labelledby="nav-books-tab" tabindex="0">
+                                <%if(books.length!=0){%>
+                                    <div class="container-fluid activities py-5">
+                                        <div class="container py-5">
+                                            <div class="row g-4">                                
+                                    <%for(nashid of books){%>
+                                        <div class="col-lg-12">
+                                            <div class="activities-item p-4" data-wow-delay="0.1s">                                        
+                                                <div class="ms-4">
+                                                    <div class="d-flex" style="
+                                                    
+                                                    align-items: center;
+                                                ">                                        
+                                                    <h4><%=scholar.name%></h4>
+                                                </div>
+                                                    <p class="mb-4"><%=nashid.name%></p>
+                                                    <p class="card-text"><small class="text-muted">
+                                                        <img src="https://img.icons8.com/color/512/calendar--v1.png"
+                                                            style="width: 20px;">
+                                                        <%=nashid.date%>
+                                                    </small>
+                                                </p>
+                                                    <a href="/subject/<%=scholar._id%>/books/<%=nashid._id%>" class="btn btn-primary px-3">
+                                                        قراءة                               
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>                                
+                                        <%}%>
+                                    </div>
+                                </div>
+                            </div>
+                                    <%}else{%>
+                                        <div class="alert alert-info" role="alert">
+                                            لا يوجد كتب
+                                        </div>
+                                        <%}%></div>
+                      </div>
+                   <!--  <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active"" id="pills-less" role="tabpanel"
+                            aria-labelledby="pills-less-tab" tabindex="0">
+                            <%if(lessons.length!=0){%>
+                                <%for(lesson of lessons){%>
+                                    <a href="/subject/<%=scholar._id%>/lessons/<%=lesson._id%>">
+                                        <div class="card text-center text-bg-dark mb-3" style="max-width: 18rem;">
+                                            <div class="card-header">
+                                                <%=scholar.name%>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <%=lesson.name%>
+                                                </h5>
+                                                <p class="card-text"><small class="text-muted">
+                                                        <img src="https://img.icons8.com/color/512/calendar--v1.png"
+                                                            style="width: 20px;">
+                                                        <%=lesson.date%>
+                                                    </small></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <%}%>
+                                        <%}else{%>
+                                            <div class="alert alert-info" role="alert">
+                                                لا يوجد
+                                            </div>
+                                            <%}%>
+                        </div>
+    
+                        <div class="tab-pane fade" id="pills-articles" role="tabpanel" aria-labelledby="pills-articles-tab"
+                            tabindex="0">
+                            <%if(articles.length!=0){%>
+                                <%for(article of articles){%>
+                                    <a href="/subject/<%=scholar._id%>/articles/<%=article._id%>">
+                                        <div class="card text-center text-bg-dark mb-3" style="max-width: 18rem;">
+                                            <div class="card-header">
+                                                <%=scholar.name%>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <%=article.name%>
+                                                </h5>
+                                                <p class="card-text"><small class="text-muted">
+                                                        <img src="https://img.icons8.com/color/512/calendar--v1.png"
+                                                            style="width: 20px;">
+                                                        <%=article.date%>
+                                                    </small></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <%}%>
+                                        <%}else{%>
+                                            <div class="alert alert-info" role="alert">
+                                                لا يوجد
+                                            </div>
+                                            <%}%>
+                        </div>
+                        <div class="tab-pane fade" id="pills-anashid" role="tabpanel" aria-labelledby="pills-anashid-tab"
+                            tabindex="0">
+                            <%if(anashid.length!=0){%>
+                                <%for(nashid of anashid){%>
+                                    <a href="/subject/<%=scholar._id%>/anashid/<%=nashid._id%>">
+                                        <div class="card text-center text-bg-dark mb-3" style="max-width: 18rem;">
+                                            <div class="card-header">
+                                                <%=scholar.name%>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <%=nashid.name%>
+                                                </h5>
+                                                <p class="card-text"><small class="text-muted">
+                                                        <img src="https://img.icons8.com/color/512/calendar--v1.png"
+                                                            style="width: 20px;">
+                                                        <%=nashid.date%>
+                                                    </small></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <%}%>
+                                        <%}else{%>
+                                            <div class="alert alert-info" role="alert">
+                                                لا يوجد
+                                            </div>
+                                            <%}%>
+                        </div>
+                        <div class="tab-pane fade" id="pills-books" role="tabpanel" aria-labelledby="pills-books-tab"
+                            tabindex="0">
+                            <%if(books.length!=0){%>
+                                <%for(book of books){%>
+                                    <a href="/subject/<%=scholar._id%>/books/<%=book._id%>">
+                                        <div class="card text-center text-bg-dark mb-3" style="max-width: 18rem;">
+                                            <div class="card-header">
+                                                <%=scholar.name%>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <%=book.name%>
+                                                </h5>
+                                                <p class="card-text"><small class="text-muted">
+                                                        <img src="https://img.icons8.com/color/512/calendar--v1.png"
+                                                            style="width: 20px;">
+                                                        <%=book.date%>
+                                                    </small></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <%}%>
+                                        <%}else{%>
+                                            <div class="alert alert-info" role="alert">
+                                                لا يوجد
+                                            </div>
+                                            <%}%>
+                        </div>
+                    </div> -->
+                           </div>
+            </div>
+        </div>
+    </div>
+      
+        <!-- <style>
             a {
                 text-decoration: none;
             }
@@ -188,6 +506,6 @@
 
             </div>
         </div>
-
+ -->
 
         <%- include('parts/footer.ejs')%>

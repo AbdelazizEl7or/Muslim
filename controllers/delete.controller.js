@@ -15,7 +15,7 @@ const mongoose = require("mongoose");
 exports.deleteMan = (req, res, next) => {
     mongoose.connect(url, { useNewUrlParser: true }, (err) => {
         Scholar.findByIdAndRemove(req.params.id).then(err => {
-            res.redirect("/add/zizo/2009741852")
+            res.redirect("/admin")
         })
 
     })
@@ -30,7 +30,7 @@ exports.deleteInMan = (req, res, next) => {
     mongoose.connect(url, { useNewUrlParser: true }, (err) => {
         type.findByIdAndRemove(req.params.id).then(err => {
             console.log(err)
-            res.redirect("/add/zizo/2009741852")
+            res.redirect("/admin")
         })
     })
 }

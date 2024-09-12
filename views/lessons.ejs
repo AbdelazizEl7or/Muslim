@@ -13,34 +13,37 @@
         </style>
 
 
-        <div class="row mt-4">
-            <div class="col row">
-                <h2 style="
-                text-align: center;
-            ">الدروس</h2>
-                <%for(sub of data){%>
-                    <a class="a col-lg-3 col-sm-6" href="/subject/<%=sub.teacherId%>/lessons/<%=sub._id%>">
-                        <div class="card text-center text-bg-dark mb-3" style="max-width: 18rem;">
-                            <div class="card-header">
-                                <%=sub.teacherName%>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <%=sub.name%>
-                                </h5>
-                                <p class="card-text"><small class="text-muted">
-                                        <img src="https://img.icons8.com/color/512/calendar--v1.png"
-                                            style="width: 20px;">
-                                        <%=sub.date%>
-                                    </small></p>
-                            </div>
+                  <!-- Activities Start -->
+                  <div class="container-fluid activities py-5">
+                    <div class="container py-5">
+                        <div class="mx-auto text-center mb-5 wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
                         </div>
-                    </a>
-                    <%}%>
-            </div>
-            <div class="col-3">
-                <%- include('parts/list.ejs')%>
-            </div>
-        </div>
+                        <div class="row g-4">
+                            <%for(sub of data){%> 
+                            <div class="col-lg-6 col-xl-4">
+                                <div class="activities-item p-4 wow fadeIn" data-wow-delay="0.1s">
+                                    
+                                    <div class="ms-4">
+                                        <div class="d-flex" style="
+                                        
+                                        align-items: center;
+                                    ">
+                                        <h4><%=sub.teacherName%></h4>
+                                    </div>
+                                        <p class="mb-4" style="
+                                        height: 100px;
+                                        overflow: auto;
+                                    "><%=sub.name%></p>
+                                    <a href="/subject/<%=sub.teacherId%>/lessons/<%=sub._id%>" class="btn btn-primary px-3">
+                                        عرض                                    
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <%}%>
+                        </div>
+                    </div>
+                </div>
+                <!-- Activities End -->
 
         <%- include('parts/footer.ejs')%>

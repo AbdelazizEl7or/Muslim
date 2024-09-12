@@ -13,7 +13,21 @@ let url = "mongodb+srv://zizoBoy:741852@islam-data.iovdiwe.mongodb.net/all-data?
 
 const mongoose = require("mongoose");
 const mongodb = require("mongodb");
-
+function shuffle(array) {
+    let currentIndex = array.length;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  }
 exports.getAll = (req, res, next) => {
     mongoose.connect(url, { useNewUrlParser: true }, (err) => {
         Scholar.find({}, (err, scholar) => {
@@ -31,11 +45,37 @@ exports.getAll = (req, res, next) => {
                             articles.forEach(element => {
                                 element.type="articles"
                             });
-                           let news = [...lessons,...articles,...anashid];
-                           news.sort(function(a,b){
-                            return new Date(b.date) - new Date(a.date);
+                            lessons = lessons.reverse();
+                            anashid = anashid.reverse();
+                            articles = articles.reverse();
+                            const a2e = s => s.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))
+                            lessons.sort(function(a,b){
+                                return new Date(a2e(b.date)).getTime() - new Date(a2e(a.date)).getTime();
+                            })
+                          anashid.sort(function(a,b){
+                            return new Date(a2e(b.date)).getTime() - new Date(a2e(a.date)).getTime();
                           })
-                          news = news.slice(0, 30);
+                          articles.sort(function(a,b){
+                              return new Date(a2e(b.date)).getTime() - new Date(a2e(a.date)).getTime();
+                            })
+                            console.log(lessons[0])
+
+                            let news = [...lessons,...anashid,...articles];
+                            news.sort(function(a,b){
+                                return new Date(a2e(b.date)).getTime() - new Date(a2e(a.date)).getTime();
+                            })
+                                         
+                        
+                          
+                          news = news.slice(0, 30)
+                          shuffle(news);
+                          news.forEach(e=>{
+                            e.teacherImage = scholar.find(scholar=>scholar._id ==e.teacherId).image
+                          })
+
+                          fetch('https://www.hadithapi.com/public/api/hadiths?apiKey=$2y$10$8EHnBK2R1qaeMhgIFNHuiH6OZwPRX5ICH4rSHoQQxAZmTJHFFS&page='+Math.floor((Math.random() * 1625) + 1)) // api for the get request
+    .then(response => response.json())
+    .then(data =>{
                             res.render("index", {
                                 scholars: scholar,
                                 lessons: lessons,
@@ -43,9 +83,10 @@ exports.getAll = (req, res, next) => {
                                 anashid: anashid,
                                 books: books,
                                 news:news,
+                                ahadith:data.hadiths.data,
                                 path: "/"
                             })
-
+                        });
                         })
                     })
 

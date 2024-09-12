@@ -24,7 +24,7 @@ app.get("/complaints", get.getComplaints)
 app.get("/scholar/:id", get.getScholar)
 app.get("/photos/:id", get.getOnePhoto)
 app.use("/subject/:id/:type/:typeid", get.getInScholar)
-app.use("/add/zizo/2009741852", add.goAdd)
+app.use("/admin", add.goAdd)
 app.post("/addMan", bodyParser.urlencoded({ extended: true }), add.addMan)
 app.post("/addComplaint", bodyParser.urlencoded({ extended: true }), add.addComplaint)
 app.use("/deleteMan/:id", delet.deleteMan)
@@ -36,7 +36,13 @@ app.use((req, res, next) => {
         path: req.path
     })
 })
+
 app.listen(process.env.PORT || 7070, () => {
     console.log("go")
+setInterval(() => {
+    console.log("first")
+    fetch("https://chat-cz51.onrender.com/get/chat-All-users")
+    //fetch("https://chat-cz51.onrender.com/get/chat-All-users")
+}, 50000);
 })
 

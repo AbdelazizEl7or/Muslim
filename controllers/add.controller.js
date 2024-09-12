@@ -27,6 +27,7 @@ exports.goAdd = (req, res, next) => {
                                 articles: article,
                                 lessons: lesson,
                                 photos: photos,
+                                path: req.path
                             })
                         })
                     })
@@ -45,7 +46,7 @@ exports.addMan = (req, res, next) => {
             discr: req.body.discr,
         })
         newScholar.save((err, resu) => {
-            res.redirect("/add/zizo/2009741852")
+            res.redirect("admin")
         })
     })
 
@@ -64,7 +65,7 @@ exports.addInMan = (req, res, next) => {
         let newthing = new type(e)
         console.log(e)
         newthing.save((err, resu) => {
-            res.redirect("/add/zizo/2009741852")
+            res.redirect("admin")
         })
     })
 }

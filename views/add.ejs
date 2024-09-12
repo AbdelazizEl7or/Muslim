@@ -2,10 +2,6 @@
     <%- include('parts/nav.ejs')%>
 
         <style>
-            * {
-                font-family: NotoNaskhArabic !important;
-                font-size: 23px;
-            }
 
             body {
                 direction: rtl;
@@ -25,12 +21,12 @@
                 margin: 5px;
             }
         </style>
-        <div class="container mt-2 bg-info" style="
+        <div class=" container" style="
         min-height: 345px;
+        margin-top: 200px;
         border-radius: 18px;
     ">
             <!-- Content here -->
-
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
@@ -39,7 +35,6 @@
                         type="button" role="tab" aria-controls="nav-profile" aria-selected="false">أحذف</button>
                     <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
                         type="button" role="tab" aria-controls="nav-contact" aria-selected="false">عدل</button>
-
                 </div>
             </nav>
 
@@ -85,7 +80,7 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseTwo" aria-expanded="false"
                                 aria-controls="flush-collapseTwo">
-                                اضف شيئ للعالم
+                                اضف ماده لعالم
                             </button>
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse"
